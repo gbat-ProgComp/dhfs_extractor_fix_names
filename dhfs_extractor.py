@@ -197,8 +197,8 @@ class DVRExtractor (wx.Frame):
         for part_idx in range(self.dhfs.get_num_partitions()):
             for desc_idx in self.dhfs.get_main_descs(part_idx):
                 date  = self.dhfs.get_begin_date(part_idx, desc_idx)
-                begin = self.dhfs.getBeginTime(part_idx, desc_idx)
-                end   = self.dhfs.getEndTime(part_idx, desc_idx)
+                begin = self.dhfs.get_begin_time(part_idx, desc_idx)
+                end   = self.dhfs.get_end_time(part_idx, desc_idx)
                 cam   = f"{self.dhfs.get_camera(part_idx, desc_idx):02d}"
                 size  = f"{self.dhfs.get_video_size(part_idx, desc_idx)/1024**2:.2f} MB"
 
@@ -262,9 +262,9 @@ class DVRExtractor (wx.Frame):
         tot_videos = 0
         for lb_video_idx in range(self.lb_videos.GetItemCount()):
             if self.lb_videos.IsSelected(lb_video_idx):
-                metaData = ";".join([self.lb_videos.GetItemText(lb_video_idx, i)
+                metadata = ";".join([self.lb_videos.GetItemText(lb_video_idx, i)
                                         for i in range(7)])
-                fd_out.write(metaData+"\n")
+                fd_out.write(metadata+"\n")
                 tot_videos += 1
         fd_out.close()
 
@@ -284,7 +284,7 @@ class DVRExtractor (wx.Frame):
                 if self.lb_videos.IsSelected(lb_video_idx):
                     part_idx = int(self.lb_videos.GetItemText(lb_video_idx, 0))
                     video_idx = int(self.lb_videos.GetItemText(lb_video_idx, 1))
-                    self.dhfs.saveSlackAt(tot_slack, part_idx, video_idx, dir_save, self.SetStatusText)
+                    self.dhfs.save_slack_at(tot_slack, part_idx, video_idx, dir_save, self.SetStatusText)
                     tot_slack += 1
             self.SetStatusText(f"Done!!!")
 

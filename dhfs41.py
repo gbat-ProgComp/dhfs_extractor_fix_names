@@ -86,11 +86,11 @@ class DHFS41:
         beginTimeStamp = self.get_begin_timestamp(part_idx, desc_idx)
         return self.timeStampToDate(beginTimeStamp)
 
-    def getBeginTime(self, part_idx, desc_idx):
+    def get_begin_time(self, part_idx, desc_idx):
         timestamp = self.get_begin_timestamp(part_idx, desc_idx)
         return self.timeStampToTime(timestamp)
 
-    def getEndTime(self, part_idx, desc_idx):
+    def get_end_time(self, part_idx, desc_idx):
         timestamp = self.get_end_timestamp(part_idx, desc_idx)
         return self.timeStampToTime(timestamp)
 
@@ -339,8 +339,8 @@ class DHFS41:
     def save_video_at (self, part_idx, desc_idx, path, logFunc = None):
         if self.img_loaded:
             date     = self.get_begin_date(part_idx, desc_idx)
-            begin    = self.getBeginTime(part_idx, desc_idx)
-            end      = self.getEndTime(part_idx, desc_idx)
+            begin    = self.get_begin_time(part_idx, desc_idx)
+            end      = self.get_end_time(part_idx, desc_idx)
             cam      = self.get_camera(part_idx, desc_idx)
             totFrag  = self.get_num_frags(part_idx, desc_idx)
 
@@ -363,11 +363,11 @@ class DHFS41:
         else:
             return None
 
-    def saveSlackAt (self, idx, part_idx, desc_idx, path, log_func = None):
+    def save_slack_at (self, idx, part_idx, desc_idx, path, log_func = None):
         if self.img_loaded and self.get_slack_size(part_idx, desc_idx) > 0:
             date     = self.get_begin_date(part_idx, desc_idx)
-            begin    = self.getBeginTime(part_idx, desc_idx)
-            end      = self.getEndTime(part_idx, desc_idx)
+            begin    = self.get_begin_time(part_idx, desc_idx)
+            end      = self.get_end_time(part_idx, desc_idx)
             cam      = self.get_camera(part_idx, desc_idx)
             size_last = self.get_camera(part_idx, desc_idx)
             file_name = f"{idx:04d}-Slack-p{part_idx}-{desc_idx:06d}-"
@@ -430,7 +430,7 @@ class DHFS41:
                 desc_idx = self.dirty_frags[part_idx][idx]
 
                 date     = self.get_begin_date(part_idx, desc_idx)
-                begin    = self.getBeginTime(part_idx, desc_idx)
+                begin    = self.get_begin_time(part_idx, desc_idx)
                 cam      = self.get_camera(part_idx, desc_idx)
                 file_name = f"FragDirty-p{part_idx}-{desc_idx:06d}-{date.replace('-','')}-"
                 file_name += f"{begin.replace(':','')}-"
