@@ -284,6 +284,7 @@ class DHFS41:
             if self.DEBUG:
                 print ("Partition: ", part_idx)
                 print ("\tGetting desc types...")
+
             all_desc_types = self.get_desc_types(part_idx)
 
             if self.DEBUG:
@@ -385,7 +386,6 @@ class DHFS41:
             return file_name
         else:
             return None
-
 
     def save_recovered_at_free (self, part_idx, path, log_func):
         tot_videos = 0
